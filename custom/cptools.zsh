@@ -10,11 +10,11 @@ alias resque-workers="COUNT=2 QUEUE=* bundle exec rake resque:workers &"
 # Pseudo private help functions
 
 __it_is_up() {
-  echo " [\e[0;32mup\e[0;37m]"
+  echo " [\e[0;32mup\e[0m]"
 }
 
 __it_is_down() {
-  echo " [\e[0;31mdown\e[0;37m]"
+  echo " [\e[0;31mdown\e[0m]"
 }
 
 __cpprocess() {
