@@ -7,18 +7,30 @@ alias cpnginx="sudo nginx -c /web/challengepost/config/nginx/nginx.conf"
 alias cpapp="nohup bundle exec unicorn_rails -c config/unicorn/unicorn.rb &"
 alias resque-workers="COUNT=2 QUEUE=* bundle exec rake resque:workers &"
 
+# Colors
 txtred='\e[0;31m' # Red
 txtgrn='\e[0;32m' # Green
 txtrst='\e[0m'    # Text Reset
 
 # Pseudo private help functions
-
 __it_is_up() {
-  echo " [${txtgrn}up${txtrst}]"
+  if [[ -z "$2" ]]
+  then
+    PREFIX="Checking for"
+  else
+    PREFIX="            "
+  fi
+  printf "$PREFIX %-12s [${txtgrn}up${txtrst}]\n" "$1"
 }
 
 __it_is_down() {
-  echo " [${txtred}down${txtrst}]"
+  if [[ -z "$2" ]]
+  then
+    PREFIX="Checking for "
+  else
+    PREFIX="             "
+  fi
+  printf "$PREFIX %-12s [${txtred}down${txtrst}]\n" $1
 }
 
 __cpprocess() {
@@ -32,56 +44,54 @@ cpcheckstatus() {
   utils=(nginx memcached redis mysql)
   down=()
 
+  echo "Checking for global services...\n"
+
   for i in $utils
   do
-    echo -n "Checking for $i..."
     if [[ -n "`ps -eo pid=,command= | fgrep -e \"$i\" | fgrep -ve fgrep`" ]]
     then
-      __it_is_up
+      __it_is_up "$i..."
     else
-      __it_is_down
+      __it_is_down "$i..."
       down+=$i
     fi
   done
 
+  echo "\nChecking for specific services...\n"
   for i in challengepost challenges home
   do
     echo "Checking for ${i}"
 
-    echo -n "  unicorn..."
     file="/web/$i/log/unicorn_${i}.pid"
     if [[ -e "${file}" ]]
     then
       pid=$(cat ${file})
       if [[ -n "`ps -o pid= -p $pid`" ]]
       then
-        __it_is_up
+        __it_is_up "unicorn..." 1
       else
-        __it_is_down
+        __it_is_down "unicorn..." 1
         down+="${i}:unicorn"
       fi
     else
-      __it_is_down
+      __it_is_down "unicorn..." 1
       down+="${i}:unicorn"
     fi
 
-    echo -n "  solr..."
     file="/web/$i/config/sunspot.yml"
     if [[ -e "$file" ]]
     then
-      # This is assuming that the first port entry belongs to the development
-      # environment
-      port=$(fgrep "port:" $file | head -1 | sed -e 's/port: //' -e 's/ //g')
+      port=$(sed -ne '/development:/,/^\s*$/p' $file | fgrep "port: " | head -1 | sed -e 's/port: //' -e 's/ //g')
       port="-Djetty.port=$port"
       if [[ -n "`ps -eo pid=,command= | fgrep -- $port | fgrep -ve fgrep`" ]]
       then
-        __it_is_up
+        __it_is_up "solr..." 1
       else
-        __it_is_down
+        __it_is_down "solr..." 1
         down+="${i}:solr"
       fi
     else
-      __it_is_down
+      __it_is_down "solr..." 1
       down+="${i}:solr"
     fi
   done
