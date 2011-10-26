@@ -4,7 +4,7 @@
 
 # CP aliases
 alias cpnginx="sudo nginx -c /web/challengepost/config/nginx/nginx.conf"
-alias cpapp="nohup bundle exec unicorn -c config/unicorn/unicorn.rb &"
+alias cpapp="nohup bundle exec unicorn -c config/unicorn/unicorn.rb -D"
 alias resque-workers="COUNT=2 QUEUE=* bundle exec rake resque:workers &"
 
 # Colors

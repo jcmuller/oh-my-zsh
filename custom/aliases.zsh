@@ -10,3 +10,10 @@ alias HEAD="lwp-request -m head"
 alias GET="lwp-request -m get"
 alias POST="lwp-request -m post"
 
+alias be="bundle exec"
+alias bi="bundle install"
+alias bu="bundle update"
+
+alias bumall='for i in /web/*; do (echo "$i:"; cd $i && bundle update models); done'
+alias gprall='for i in /web/*; do (echo "$i:"; cd $i && gpr); done'
+alias  biall='for i in /web/*; do (echo "$i:"; cd $i && (bundle check || bundle install)); done'
