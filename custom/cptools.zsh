@@ -3,9 +3,10 @@
 # By: Juan C. Muller, ChallengePost, 2011
 
 # CP aliases
-alias cpnginx="sudo nginx -c /web/challengepost/config/nginx/nginx.conf"
+alias cpnginx="sudo nginx -c /web/platform/config/nginx/nginx.conf"
 alias cpapp="nohup bundle exec unicorn -c config/unicorn/unicorn.rb -D"
 alias resque-workers="COUNT=2 QUEUE=* bundle exec rake resque:workers &"
+alias cpstart=cpapp
 
 # Colors
 txtred='\e[0;31m' # Red
@@ -82,7 +83,7 @@ cpcheckstatus() {
     fi
   done
 
-  apps=(challengepost challenges home)
+  apps=(platform)
 
   echo "\nChecking for specific services...\n"
   for i in $apps
