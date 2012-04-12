@@ -30,7 +30,7 @@ for rbenvdir in "${rbenvdirs[@]}" ; do
     }
 
     function current_gemset() {
-      echo "$(rbenv gemset active 2&>/dev/null | sed -e ":a" -e '$ s/\n/+/gp;N;b a' | head -n1)"
+      echo "$(rbenv gemset active 2&>/dev/null | sed -e ":a" -e '$ s/\n/+/gp' | head -n1)"
     }
 
     function gems {
