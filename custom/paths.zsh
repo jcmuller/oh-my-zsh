@@ -1,6 +1,7 @@
 DEV_SRC="$HOME/Development/ChallengePost"
 challenges="$DEV_SRC/challenges"
 cp="$DEV_SRC/challengepost"
+dash="$DEV_SRC/dash"
 devise="$DEV_SRC/devise"
 helpers="$DEV_SRC/helpers"
 home="$DEV_SRC/home"
