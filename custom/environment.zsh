@@ -14,3 +14,8 @@ export NODE_PATH="/usr/local/lib/node:/usr/local/lib/node_modules"
 #  alias run='open -a'
 #fi
 
+CLASSPATH="~/jars/jenkins-cli.jar"
+export CLASSPATH
+
+JENKINS_URL="http://ci.berman.challengepost.com:8080"
+export JENKINS_URL
