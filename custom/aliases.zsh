@@ -2,7 +2,7 @@ alias GET="lwp-request -m get"
 alias HEAD="lwp-request -m head"
 alias POST="lwp-request -m post"
 
-alias b="bundle"
+alias b="nocorrect bundle"
 alias be="b exec"
 alias bec="be cucumber"
 alias ber="be rspec"
@@ -27,4 +27,14 @@ alias push='git push'
 alias gcv='git commit -v'
 alias gca='gcv -a'
 
+alias spork="nocorrect spork"
+alias rspec="nocorrect rspec"
+
 alias rc="rails c"
+
+alias zeus="nocorrect zeus"
+alias z="zeus"
+alias zs="z server"
+alias zc="z console"
+alias zr="z rake"
+alias zs="z rspec"
