@@ -4,7 +4,10 @@ export PATH
 #export EDITOR="mvim -f"
 export EDITOR="/usr/local/bin/vim"
 #export EDITOR='mvim -f --nomru -c "au VimLeave * !open -a iTerm"'
+
 export NODE_PATH="/usr/local/lib/node:/usr/local/lib/node_modules"
+export NODE_PATH="$NODE_PATH:/usr/local/share/npm/lib/node_modules"
+export PATH="$PATH:/usr/local/share/npm/bin"
 
 ## Add /Applications to tab completion for "open -a" and "run", which is aliased to the former.
 #if [ "`uname`" = "Darwin" ];
