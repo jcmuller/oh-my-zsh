@@ -3,14 +3,14 @@ _git_remote_branch() {
   if [[ -n $ref ]]; then
     if (( CURRENT == 2 )); then
       # first arg: operation
-      compadd create publish rename delete track
+      compadd new push mv rm pull track remote_add remote_rm prune
     elif (( CURRENT == 3 )); then
       # second arg: remote branch name
       remotes=`git remote | tr '\n' '|' | sed "s/\|$//g"`
       compadd `git branch -r | grep -v HEAD | sed "s/$remotes\///" | sed "s/ //g"`
     elif (( CURRENT == 4 )); then
       # third arg: remote name
-      compadd `git remote`
+      compadd `git remote` --explain `git branch -r | grep -v HEAD | sed "s/.*\///" | sed "s/ //g"`
     fi
   else;
     _files
