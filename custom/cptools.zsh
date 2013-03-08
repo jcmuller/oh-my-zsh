@@ -7,6 +7,7 @@ alias cpnginx="sudo nginx -c /web/platform/config/nginx/nginx.conf"
 alias cpapp="nohup bundle exec unicorn -c config/unicorn/unicorn.rb -D"
 alias resque-workers="COUNT=2 QUEUE=* bundle exec rake resque:workers &"
 alias cpstart=cpapp
+alias ci="(cd ~platform; build/schedule_build.sh -s)"
 
 # Colors
 txtred='\e[0;31m' # Red
