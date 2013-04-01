@@ -18,7 +18,6 @@ alias bumall='for i in /web/*; do (echo "$i:"; cd $i && bum); done'
 alias gitl='git log --graph --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an, %cr)%Creset'\'' --abbrev-commit --date=relative'
 alias gitls='gitl --max-count=5'
 alias gpr="git pull --rebase"
-alias gprall='for i in /web/*; do (echo "$i:"; cd $i && gpr); done'
 alias gprnf="gpr --no-ff"
 alias grm="git ls-files --deleted | xargs git rm"
 alias gs='git status'
@@ -26,6 +25,8 @@ alias gst='gs'
 alias push='git push'
 alias gcv='git commit -v'
 alias gca='gcv -a'
+alias gco='git checkout'
+alias gcm='gco master'
 
 alias spork="nocorrect spork"
 alias rspec="nocorrect rspec"
