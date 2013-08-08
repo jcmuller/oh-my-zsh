@@ -2,7 +2,7 @@
 
 [[ $UID -eq 0 ]] && NCOLOR="red" || NCOLOR="white"
 
-PROMPT='%{$fg[$NCOLOR]%}%B%n%b%{$reset_color%}:%{$fg[blue]%}%B%c%b%{$reset_color%} $(git_prompt_info)%(!.#.$) '
+PROMPT='%{$fg[$NCOLOR]%}%B%n%b%{$reset_color%}:%{$fg[blue]%}%B%c%b%{$reset_color%} $(git_prompt_info_with_sha)%(!.#.$) '
 RPROMPT='%{$fg[blue]%}%B(%{$fg[yellow]%}%B$(rbenv_prompt_info)%{$fg[blue]%})%{$reset_color%} [%*]'
 
 # git theming
