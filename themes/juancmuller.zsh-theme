@@ -1,5 +1,21 @@
 # Modified clean theme
 
+function current_ruby() {
+  echo "$(rbenv version-name)"
+}
+
+function current_gemset() {
+  echo "$(rbenv gemset active 2&>/dev/null | sed -e ":a" -e '$ s/\n/+/gp' | head -n1)"
+}
+
+function rbenv_prompt_info() {
+  if [[ -n $(current_gemset) ]] ; then
+    echo "$(current_ruby)@$(current_gemset)"
+  else
+    echo "$(current_ruby)"
+  fi
+}
+
 [[ $UID -eq 0 ]] && NCOLOR="red" || NCOLOR="white"
 
 PROMPT='%{$fg[$NCOLOR]%}%B%n%b%{$reset_color%}:%{$fg[blue]%}%B%c%b%{$reset_color%} $(git_prompt_info_with_sha)%(!.#.$) '
