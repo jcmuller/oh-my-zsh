@@ -5,3 +5,4 @@
 #  compctl -f -x 'p[2]' -s "`/bin/ls -d1 /Applications/*/*.app ~/Applications/*.app | sed 's|^.*/\([^/]*\)\.app.*|\\1|;s/ /\\\\ /g'`" -- open
 #  alias run='open -a'
 #fi
+export TERM=screen-256color
